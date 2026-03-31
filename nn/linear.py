@@ -11,4 +11,4 @@ class Linear:
 
     def __call__(self, x: np.array):
         return self.forward(x)
-
+    
