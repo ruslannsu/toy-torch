@@ -8,18 +8,19 @@ class Model(nn.Module):
 
     def forward(self, x):
         x = self.layer(x)
-        print(x)
-        print(self.layer2(x))
         return self.layer2(x)
     
     
 
 
 model = Model()
-        
+
 inp = np.array([[[1, 2, 3], [5, 4, 3]]])
-print(model(inp))
+out= model(inp)
 
-b = np.array([1, 2, 3, 4, 5])
+y = np.array([[[1, 2, 3, 5, 6], [5, 4, 3, 2, 1]]])
+print(y)
+a = nn.MSE()
+a.calc_loss(y, out)
+a.backward(model.parameter)
 
-print(b[5:0:-1])
