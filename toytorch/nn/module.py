@@ -1,12 +1,12 @@
-import numpy as np
+from .parameter import Parameter
 
 class Module:
     def __init__(self) -> None:
-        pass
-    
+        self.parameter = Parameter([self, None])
+
     def forward(self, x):
         pass
 
     def __call__(self, *args):
-        self.forward(*args)
+        return self.forward(*args)
 

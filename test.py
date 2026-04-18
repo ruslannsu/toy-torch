@@ -1,15 +1,25 @@
-
+from toytorch import nn
 import numpy as np
+class Model(nn.Module):
+    def __init__(self) -> None:
+        super().__init__()
+        self.layer = nn.Linear(3, 4)
+        self.layer2 = nn.Linear(4, 5)
 
-import nn
+    def forward(self, x):
+        x = self.layer(x)
+        print(x)
+        print(self.layer2(x))
+        return self.layer2(x)
+    
+    
 
 
-model = nn.Linear(5, 6)
+model = Model()
+        
+inp = np.array([[[1, 2, 3], [5, 4, 3]]])
+print(model(inp))
 
-z  = np.eye(5)
+b = np.array([1, 2, 3, 4, 5])
 
-print(model(z))
-
-k = np.eye(6)
-
-model.backward(k)
+print(b[5:0:-1])
