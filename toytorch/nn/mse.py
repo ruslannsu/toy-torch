@@ -11,7 +11,7 @@ class MSE():
         self.target = target
 
     def backward(self, Parameter):
-        self.backward_grad = -self.input + self.target
+        self.backward_grad = self.input - self.target
         for layer in Parameter.layers[::-1]:
             if Parameter.calling[layer] is None:
                continue
@@ -19,7 +19,7 @@ class MSE():
                 layer.grad = np.zeros(Parameter.calling[layer].shape)
             layer.grad += layer.x_input.T @ self.backward_grad
             self.backward_grad = self.backward_grad @ Parameter.calling[layer].T
-            
+                    
     def __call__(self, y, target):
         self.calc_loss(y=y, target=target)
 
