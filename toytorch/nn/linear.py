@@ -5,8 +5,10 @@ class Linear:
     def __init__(self, input_size: int, output_size: int) -> None:
         self.input_size = input_size 
         self.output_size = output_size
-        Parameter([self, np.random.default_rng().normal(size=(input_size, output_size))])
+        Parameter([self, np.random.uniform(- 0.5, 0.5, size=(input_size, output_size))])
+      #  Parameter([self, np.random.default_rng().normal(size=(input_size, output_size))])
         self.grad = None
+        self.x_input = None
     
     def __call__(self, x: np.ndarray):
         self.x_input = x

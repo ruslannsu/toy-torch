@@ -1,7 +1,7 @@
 import numpy as np
 from .parameter import Parameter
 
-class MSE():
+class CrossEntropy():
     def __init__(self) -> None:
         self._item = None
 
@@ -15,10 +15,10 @@ class MSE():
         for layer in Parameter.layers[::-1]:
             if Parameter.calling[layer] is None:
                 continue
+            print(type(layer))
             if layer.grad is None:
                 layer.grad = np.zeros(Parameter.calling[layer].shape) 
-           # print(layer.x_input)
-            layer.grad += ((layer.x_input.T @ self.backward_grad) / self.backward_grad.shape[0])
+            layer.grad += layer.x_input.T @ self.backward_grad
             self.backward_grad = self.backward_grad @ Parameter.calling[layer].T
                     
     def __call__(self, y, target):
@@ -26,4 +26,3 @@ class MSE():
 
     def item(self):
         return self._item
-    
